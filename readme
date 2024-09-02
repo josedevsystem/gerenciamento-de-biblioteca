@@ -1,0 +1,116 @@
+Objetivo:
+
+Desenvolver um sistema de gerenciamento de biblioteca utilizando um banco de dados SQL para armazenar e gerenciar informações sobre livros, autores e empréstimos. O sistema deve permitir a inserção, consulta, atualização e exclusão de dados, além de fornecer relatórios úteis para a administração da biblioteca.
+
+Requisitos:
+
+Banco de Dados:
+
+O banco de dados deve ser chamado Biblioteca.
+O banco de dados deve conter as seguintes tabelas:
+Autores: Armazena informações sobre autores.
+Livros: Armazena informações sobre livros, incluindo a referência ao autor.
+Emprestimos: Registra os empréstimos de livros, incluindo dados sobre o usuário e datas de empréstimo e devolução.
+Operações de Dados:
+
+Inserção: Permitir a inserção de novos autores, livros e empréstimos.
+Consulta: Consultar todos os livros com seus autores, empréstimos em aberto e outros relatórios úteis.
+Atualização: Atualizar dados de empréstimos e livros.
+Exclusão: Excluir livros e registros de empréstimos associados.
+Relatórios:
+
+Relatório de livros disponíveis.
+Relatório de livros mais emprestados.
+Relatório de empréstimos por cliente.
+Tecnologias Utilizadas:
+
+MySQL ou MariaDB para o gerenciamento do banco de dados SQL.
+
+# Sistema de Gerenciamento de Biblioteca
+
+Este projeto é um sistema de gerenciamento de biblioteca que utiliza um banco de dados SQL para armazenar e gerenciar informações sobre livros, autores e empréstimos.
+
+## Requisitos
+
+1. **Banco de Dados:**
+   - Nome: `Biblioteca`
+   - Tabelas:
+     - **Autores**: Armazena informações sobre autores.
+     - **Livros**: Armazena informações sobre livros, incluindo a referência ao autor.
+     - **Emprestimos**: Registra os empréstimos de livros, incluindo dados sobre o usuário e datas de empréstimo e devolução.
+
+2. **Operações de Dados:**
+   - **Inserção**: Adicionar novos registros nas tabelas.
+   - **Consulta**: Consultar dados como livros, autores e empréstimos.
+   - **Atualização**: Atualizar informações sobre livros e empréstimos.
+   - **Exclusão**: Remover livros e empréstimos.
+
+3. **Relatórios Úteis:**
+   - Livros disponíveis para empréstimo.
+   - Livros mais emprestados.
+   - Empréstimos por cliente.
+
+## Estrutura do Banco de Dados
+
+1. **Tabelas:**
+
+   - **Autores**
+     ```sql
+     CREATE TABLE Autores (
+         AutorID INT AUTO_INCREMENT PRIMARY KEY,
+         Nome VARCHAR(100) NOT NULL,
+         Nacionalidade VARCHAR(100)
+     );
+     ```
+
+   - **Livros**
+     ```sql
+     CREATE TABLE Livros (
+         LivroID INT AUTO_INCREMENT PRIMARY KEY,
+         Titulo VARCHAR(255) NOT NULL,
+         AutorID INT,
+         AnoPublicacao YEAR,
+         Genero VARCHAR(50),
+         FOREIGN KEY (AutorID) REFERENCES Autores(AutorID)
+     );
+     ```
+
+   - **Emprestimos**
+     ```sql
+     CREATE TABLE Emprestimos (
+         EmprestimoID INT AUTO_INCREMENT PRIMARY KEY,
+         LivroID INT,
+         DataEmprestimo DATE NOT NULL,
+         DataDevolucao DATE,
+         NomeUsuario VARCHAR(100) NOT NULL,
+         FOREIGN KEY (LivroID) REFERENCES Livros(LivroID)
+     );
+     ```
+
+## Operações
+
+### Inserção de Dados
+
+Para inserir dados nas tabelas, utilize os comandos SQL de inserção apropriados.
+
+### Consultas
+
+Consultas SQL são fornecidas para listar todos os livros com autores, livros emprestados atualmente, e mais.
+
+### Atualização e Exclusão
+
+Atualize ou exclua registros conforme necessário com comandos SQL apropriados.
+
+## Como Executar
+
+1. Execute o script SQL para criar o banco de dados e as tabelas.
+2. Insira dados nas tabelas conforme os exemplos fornecidos.
+3. Utilize as consultas para verificar e gerenciar os dados.
+
+## Contribuições
+
+Contribuições são bem-vindas! Por favor, faça um fork do repositório e envie um pull request com suas melhorias.
+
+## Licença
+
+Este projeto é licenciado sob a [Licença MIT](LICENSE).
